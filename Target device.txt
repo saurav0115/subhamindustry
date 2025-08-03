@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Target Device Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    .container {
+      width: 400px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      box-shadow: 0px 0px 10px gray;
+      border-radius: 10px;
+    }
+    h2 {
+      text-align: center;
+    }
+    .status {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+    .btn {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Target Device Control Panel</h2>
+    <p class="status">Status: <span id="deviceStatus">Disconnected</span></p>
+    <button class="btn" onclick="connectDevice()">Connect</button>
+    <button class="btn" onclick="toggleDevice()">Toggle Power</button>
+    <p id="log"></p>
+  </div>
+
+  <script>
+    let isConnected = false;
+    let isOn = false;
+
+    function connectDevice() {
+      isConnected = true;
+      document.getElementById('deviceStatus').innerText = 'Connected';
+      log('Device connected');
+    }
+
+    function toggleDevice() {
+      if (!isConnected) {
+        log('Please connect the device first.');
+        return;
+      }
+      isOn = !isOn;
+      const state = isOn ? 'ON' : 'OFF';
+      log('Device turned ' + state);
+    }
+
+    function log(message) {
+      document.getElementById('log').innerText = message;
+    }
+  </script>
+</body>
+</html>
